@@ -54,12 +54,12 @@ export default class CountdownController {
   }
 
   pause() {
-    if (!this.timerEvent) return
+    if (!this.timerEvent || this.timerEvent.paused) return
     this.timerEvent.paused = true
   }
 
   resume() {
-    if (!this.timerEvent) return
+    if (!this.timerEvent || !this.timerEvent.paused) return
     this.timerEvent.paused = false
   }
 
