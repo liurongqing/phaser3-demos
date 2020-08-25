@@ -43,24 +43,29 @@ export default class Countdown extends Phaser.Scene {
 
 
     // 赢了
-    winText.once('pointerdown', () => {
+    winText.once(Phaser.Input.Events.POINTER_DOWN, () => {
       this.countdown.stop()
       winText.setText('I Win!')
     })
 
     // 重新开启
-    restartText.on('pointerdown', () => {
+    restartText.on(Phaser.Input.Events.POINTER_DOWN, () => {
       this.countdown.start(this.handleCountdownFinished.bind(this), 10000)
     })
 
     // 暂停
-    pausedText.on('pointerdown', () => {
+    pausedText.on(Phaser.Input.Events.POINTER_DOWN, () => {
       this.countdown.pause()
     })
 
     // 恢复
-    resumeText.on('pointerdown', () => {
+    resumeText.on(Phaser.Input.Events.POINTER_DOWN, () => {
       this.countdown.resume()
+    })
+
+    this.events.on(Phaser.Scenes.Events.SHUTDOWN, () => {
+      console.log('shutdown...')
+      this.input.off(Phaser.Input.Events.POINTER_DOWN)
     })
   }
 
