@@ -1,9 +1,11 @@
 import Countdown from './Countdown'
 import TransitionFrom from './TransitionFrom'
 import TransitionTo from './TransitionTo'
+import Typewriter from './Typewriter'
 
 export default [
-  TransitionFrom,
+  Typewriter,
   Countdown,
+  TransitionFrom,
   TransitionTo
 ]
