@@ -1,7 +1,5 @@
-import Preload from './Preloader'
-import Game from './Game'
+import Countdown from './Countdown'
 
 export default [
-  Preload,
-  Game
+  Countdown
 ]
