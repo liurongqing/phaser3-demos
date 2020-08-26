@@ -19,6 +19,8 @@ export default class Typewriter extends Phaser.Scene {
 
     this.bitmapLabel = this.add.bitmapText(100, 100, 'atari-smooth-typewrite', '')
       .setMaxWidth(500)
+
+    this.typewriteBitmapText('Hello, World!')
   }
 
   typewriteText(text: string) {
@@ -35,8 +37,22 @@ export default class Typewriter extends Phaser.Scene {
     })
   }
 
+  // 打印 bitmap 字体
   typewriteBitmapText(text: string) {
-
+    this.bitmapLabel.setText(text)
+    const bounds = this.bitmapLabel.getTextBounds(false)
+    const wrappedText = bounds['wrappedText'] || text
+    this.bitmapLabel.setText('')
+    const length = wrappedText.length
+    let i = 0
+    this.time.addEvent({
+      callback: () => {
+        this.bitmapLabel.text += wrappedText[i]
+        ++i
+      },
+      repeat: length - 1,
+      delay: 200
+    })
   }
 
   typewriteTextWrapper(text: string) {
